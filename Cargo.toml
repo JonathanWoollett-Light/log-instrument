@@ -2,7 +2,8 @@
 name = "log-instrument"
 version = "0.1.0"
 edition = "2021"
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Offers an attribute procedural macro that adds `log::trace!` events at the start and end of attributed functions."
+license = "Apache-2.0"
 
 [lib]
 proc-macro = true
