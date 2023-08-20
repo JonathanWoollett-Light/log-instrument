@@ -5,9 +5,18 @@ on:
 
 jobs:
   release-please:
+    strategy:
+      matrix:
+        include:
+          - crate: log-instrument-macros
+            path: log-instrument-macros
+          - crate: log-instrument
+            path: log-instrument
     runs-on: ubuntu-latest
     steps:
       - uses: google-github-actions/release-please-action@v3
         with:
+          monorepo-tags: true
           release-type: rust
-          package-name: release-please-action
+          path: ${{ matrix.path }}
+          package-name: ${{ matrix.crate }}

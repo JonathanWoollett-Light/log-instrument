@@ -1,20 +1,2 @@
-[package]
-name = "log-instrument"
-version = "0.1.2"
-edition = "2021"
-description = "Offers an attribute procedural macro that adds `log::trace!` events at the start and end of attributed functions."
-license = "Apache-2.0"
-
-[lib]
-proc-macro = true
-
-[dependencies]
-proc-macro2 = "1.0.66"
-quote = "1.0.33"
-syn = { version = "2.0.29", features = ["full", "extra-traits"] }
-
-[dev-dependencies]
-env_logger = "0.10.0"
-log = "0.4.20"
-log-instrument = { path = "../log-instrument" }
-simple_logger = "4.2.0"
+[workspace]
+members = ["log-instrument", "log-instrument-macros"]
