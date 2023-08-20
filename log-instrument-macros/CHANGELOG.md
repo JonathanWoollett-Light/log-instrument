@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-macros-v0.1.0...log-instrument-macros-v0.1.1) (2023-08-20)
+
+
+### Bug Fixes
+
+* `clippy::items_after_statements` ([1f96d6f](https://github.com/JonathanWoollett-Light/log-instrument/commit/1f96d6f41876efd95ef46fb05e2d9436d3774e56))
+
 ## 0.1.0 (2023-08-20)
 
 
