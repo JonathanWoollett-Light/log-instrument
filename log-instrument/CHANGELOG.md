@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-v0.1.2...log-instrument-v0.1.3) (2023-08-20)
+
+
+### Bug Fixes
+
+* Handle `self` ([d79ccbb](https://github.com/JonathanWoollett-Light/log-instrument/commit/d79ccbb4139f418dcca498e90b57da86971d35fc))
+
 ## [0.1.2](https://github.com/JonathanWoollett-Light/log-instrument/compare/v0.1.1...v0.1.2) (2023-08-20)
 
 
