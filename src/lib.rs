@@ -18,15 +18,31 @@ pub fn instrument(
     let syn::Item::Fn(mut item_fn) = input else {
         panic!("Instrument macro can only be on functions.")
     };
-    let return_type = &item_fn.sig.output;
+    let mut sig = item_fn.sig.clone();
+    let ident = syn::Ident::new("__inner", proc_macro2::Span::call_site());
+    sig.ident = ident;
+    let inputs = item_fn
+        .sig
+        .inputs
+        .iter()
+        .map(|arg| match arg {
+            syn::FnArg::Receiver(_) => syn::Ident::new("self", proc_macro2::Span::call_site()),
+            syn::FnArg::Typed(pat_type) => match &*pat_type.pat {
+                syn::Pat::Ident(pat_ident) => pat_ident.ident.clone(),
+                _ => todo!(),
+            },
+        })
+        .collect::<syn::punctuated::Punctuated<syn::Ident, syn::token::Comma>>();
+
     let enter = format!("{} enter", item_fn.sig.ident);
     let exit = format!("{} exit", item_fn.sig.ident);
     let old_block = *item_fn.block;
     let new_block_token_stream = quote! {
         {
             log::trace!(#enter);
-            let out = || #return_type #old_block;
-            let output = out();
+            #[inline(always)]
+            #sig #old_block
+            let output = __inner(#inputs);
             log::trace!(#exit);
             output
         }
