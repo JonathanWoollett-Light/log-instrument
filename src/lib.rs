@@ -18,14 +18,14 @@ pub fn instrument(
     let syn::Item::Fn(mut item_fn) = input else {
         panic!("Instrument macro can only be on functions.")
     };
-
+    let return_type = &item_fn.sig.output;
     let enter = format!("{} enter", item_fn.sig.ident);
     let exit = format!("{} exit", item_fn.sig.ident);
     let old_block = *item_fn.block;
     let new_block_token_stream = quote! {
         {
             log::trace!(#enter);
-            let out = || #old_block;
+            let out = || #return_type #old_block;
             let output = out();
             log::trace!(#exit);
             output
