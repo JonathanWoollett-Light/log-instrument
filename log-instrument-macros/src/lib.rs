@@ -2,6 +2,7 @@
 
 extern crate proc_macro;
 use quote::quote;
+use syn::parse_quote;
 
 /// Adds `log::trace!` events at the start and end of an attributed function.
 ///
@@ -18,9 +19,14 @@ pub fn instrument(
     let syn::Item::Fn(mut item_fn) = input else {
         panic!("Instrument macro can only be on functions.")
     };
+
+    let clippy_attr: syn::Attribute = parse_quote! {
+        #[allow(clippy::items_after_statements)]
+    };
+    item_fn.attrs.push(clippy_attr);
+
     let item_fn_ident = item_fn.sig.ident.to_string();
-    let new_stmt_tokens = quote! { let __ = log_instrument::__Instrument::new(#item_fn_ident); };
-    let new_stmt = syn::parse::<syn::Stmt>(new_stmt_tokens.into()).unwrap();
+    let new_stmt: syn::Stmt = parse_quote! { let __ = log_instrument::__Instrument::new(#item_fn_ident); };
     item_fn.block.stmts.insert(0, new_stmt);
 
     let out = quote! { #item_fn };
