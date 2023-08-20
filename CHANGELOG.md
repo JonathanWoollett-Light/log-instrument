@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/JonathanWoollett-Light/log-instrument/compare/v0.1.1...v0.1.2) (2023-08-20)
+
+
+### Bug Fixes
+
+* Handling mutable references ([143de44](https://github.com/JonathanWoollett-Light/log-instrument/commit/143de440ed2a3b1398efba8005813728cfc96dd2))
+
 ## [0.1.1](https://github.com/JonathanWoollett-Light/log-instrument/compare/v0.1.0...v0.1.1) (2023-08-20)
 
 
