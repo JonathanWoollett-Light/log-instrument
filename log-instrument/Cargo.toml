@@ -6,9 +6,8 @@ description = "Offers an attribute procedural macro that adds `log::trace!` even
 license = "Apache-2.0"
 
 [dependencies]
-log-instrument-macros = { path = "../log-instrument-macros" }
+log-instrument-macros = { path = "../log-instrument-macros", version = "0.1.0" }
 log = "0.4.20"
 
 [dev-dependencies]
 env_logger = "0.10.0"
-log-instrument = { path = "../log-instrument", version = "0.1.3" }
