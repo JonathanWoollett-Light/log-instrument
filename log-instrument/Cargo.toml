@@ -1,6 +1,6 @@
 [package]
 name = "log-instrument"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 description = "Offers an attribute procedural macro that adds `log::trace!` events at the start and end of attributed functions."
 license = "Apache-2.0"
