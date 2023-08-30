@@ -26,7 +26,8 @@ pub fn instrument(
     item_fn.attrs.push(clippy_attr);
 
     let item_fn_ident = item_fn.sig.ident.to_string();
-    let new_stmt: syn::Stmt = parse_quote! { let __ = log_instrument::__Instrument::new(#item_fn_ident); };
+    let new_stmt: syn::Stmt =
+        parse_quote! { let __ = log_instrument::__Instrument::new(#item_fn_ident); };
     item_fn.block.stmts.insert(0, new_stmt);
 
     let out = quote! { #item_fn };
