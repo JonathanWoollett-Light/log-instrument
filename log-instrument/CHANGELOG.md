@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-v0.1.4...log-instrument-v0.2.0) (2023-09-01)
+
+
+### Features
+
+* `on` feature ([56ea70c](https://github.com/JonathanWoollett-Light/log-instrument/commit/56ea70c5854039757735319407f3eff6e39a7500))
+
+
+### Bug Fixes
+
+* Update `log-instrument-macros` version ([998f126](https://github.com/JonathanWoollett-Light/log-instrument/commit/998f126bd05b220aaa0bff005ea39eb3c64e9c61))
+
 ## [0.1.4](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-v0.1.3...log-instrument-v0.1.4) (2023-08-20)
 
 
