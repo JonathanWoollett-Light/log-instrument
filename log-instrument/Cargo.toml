@@ -11,3 +11,7 @@ log = "0.4.20"
 
 [dev-dependencies]
 env_logger = "0.10.0"
+
+[features]
+default = ["on"]
+on = ["log-instrument-macros/on"]

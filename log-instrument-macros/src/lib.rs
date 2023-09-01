@@ -14,6 +14,10 @@ pub fn instrument(
     _attr: proc_macro::TokenStream,
     item: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
+    if !cfg!(feature = "on") {
+        return item;
+    }
+
     let input = syn::parse_macro_input!(item as syn::Item);
 
     let syn::Item::Fn(mut item_fn) = input else {
