@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-v0.2.0...log-instrument-v0.3.0) (2023-10-12)
+
+
+### Features
+
+* Function scope ([d591852](https://github.com/JonathanWoollett-Light/log-instrument/commit/d59185258ae24683952894f0b52c8216a9284533))
+
 ## [0.2.0](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-v0.1.4...log-instrument-v0.2.0) (2023-09-01)
 
 
