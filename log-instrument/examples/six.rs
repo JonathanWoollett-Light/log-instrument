@@ -15,5 +15,11 @@ fn one(x: u32) -> u32 {
     if cmp {
         return 4;
     }
-    x + 3
+    two(x + 3)
+}
+#[log_instrument::instrument]
+fn two(x: u32) -> u32 {
+    let res = x % 2;
+    debug!("res: {res}");
+    res
 }

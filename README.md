@@ -9,6 +9,8 @@ Offers an attribute procedural macro that adds [`log::trace!`](https://docs.rs/l
 ### Example
 
 ```rust
+use log::*;
+
 fn main() {
     env_logger::builder()
         .filter_level(LevelFilter::Trace)
@@ -24,23 +26,35 @@ fn one(x: u32) -> u32 {
     if cmp {
         return 4;
     }
-    x + 3
+    two(x + 3)
+}
+#[log_instrument::instrument]
+fn two(x: u32) -> u32 {
+    let res = x % 2;
+    debug!("res: {res}");
+    res
 }
 ```
 
 Outputs:
 
 ```
-[2023-08-30T13:58:20Z TRACE log_instrument] one enter
-[2023-08-30T13:58:20Z DEBUG one] cmp: true
-[2023-08-30T13:58:20Z TRACE log_instrument] one exit
-[2023-08-30T13:58:20Z INFO  one] 4
-[2023-08-30T13:58:20Z TRACE log_instrument] one enter
-[2023-08-30T13:58:20Z DEBUG one] cmp: false
-[2023-08-30T13:58:20Z TRACE log_instrument] one exit
-[2023-08-30T13:58:20Z INFO  one] 6
-[2023-08-30T13:58:20Z TRACE log_instrument] one enter
-[2023-08-30T13:58:20Z DEBUG one] cmp: false
-[2023-08-30T13:58:20Z TRACE log_instrument] one exit
-[2023-08-30T13:58:20Z INFO  one] 7
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)>>one
+[2023-10-12T16:38:00Z DEBUG six] cmp: true
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)<<one
+[2023-10-12T16:38:00Z INFO  six] 4
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)>>one
+[2023-10-12T16:38:00Z DEBUG six] cmp: false
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)::one>>two
+[2023-10-12T16:38:00Z DEBUG six] res: 0
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)::one<<two
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)<<one
+[2023-10-12T16:38:00Z INFO  six] 0
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)>>one
+[2023-10-12T16:38:00Z DEBUG six] cmp: false
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)::one>>two
+[2023-10-12T16:38:00Z DEBUG six] res: 1
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)::one<<two
+[2023-10-12T16:38:00Z TRACE log_instrument] ThreadId(1)<<one
+[2023-10-12T16:38:00Z INFO  six] 1
 ```

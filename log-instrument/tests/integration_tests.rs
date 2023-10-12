@@ -3,6 +3,7 @@ const TWO: &str = "../target/debug/examples/two";
 const THREE: &str = "../target/debug/examples/three";
 const FOUR: &str = "../target/debug/examples/four";
 const FIVE: &str = "../target/debug/examples/five";
+const SIX: &str = "../target/debug/examples/six";
 
 const TIMESTAMP_RANGE: std::ops::Range<usize> = 1..20;
 
@@ -28,18 +29,18 @@ fn one() {
     assert!(output.status.success());
     assert_eq!(output.stdout, b"");
     let expected_stderr = b"\
-        [2023-08-30T13:58:20Z TRACE log_instrument] one enter\n\
-        [2023-08-30T13:58:20Z DEBUG one] cmp: true\n\
-        [2023-08-30T13:58:20Z TRACE log_instrument] one exit\n\
-        [2023-08-30T13:58:20Z INFO  one] 4\n\
-        [2023-08-30T13:58:20Z TRACE log_instrument] one enter\n\
-        [2023-08-30T13:58:20Z DEBUG one] cmp: false\n\
-        [2023-08-30T13:58:20Z TRACE log_instrument] one exit\n\
-        [2023-08-30T13:58:20Z INFO  one] 6\n\
-        [2023-08-30T13:58:20Z TRACE log_instrument] one enter\n\
-        [2023-08-30T13:58:20Z DEBUG one] cmp: false\n\
-        [2023-08-30T13:58:20Z TRACE log_instrument] one exit\n\
-        [2023-08-30T13:58:20Z INFO  one] 7\n\
+        [2023-10-12T16:29:00Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:29:00Z DEBUG one] cmp: true\n\
+        [2023-10-12T16:29:00Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:29:00Z INFO  one] 4\n\
+        [2023-10-12T16:29:00Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:29:00Z DEBUG one] cmp: false\n\
+        [2023-10-12T16:29:00Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:29:00Z INFO  one] 6\n\
+        [2023-10-12T16:29:00Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:29:00Z DEBUG one] cmp: false\n\
+        [2023-10-12T16:29:00Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:29:00Z INFO  one] 7\n\
     ";
     check(&output.stderr, expected_stderr);
 }
@@ -50,13 +51,13 @@ fn two() {
     assert!(output.status.success());
     assert_eq!(output.stdout, b"");
     let expected_stderr = b"\
-        [2023-08-30T14:16:15Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:16:15Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:16:15Z INFO  two] None\n\
-        [2023-08-30T14:16:15Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:16:15Z DEBUG two] [\"a\", \"b\"]\n\
-        [2023-08-30T14:16:15Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:16:15Z INFO  two] Some([\"a\", \"b\"])\n\
+        [2023-10-12T16:29:30Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:29:30Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:29:30Z INFO  two] None\n\
+        [2023-10-12T16:29:30Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:29:30Z DEBUG two] [\"a\", \"b\"]\n\
+        [2023-10-12T16:29:30Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:29:30Z INFO  two] Some([\"a\", \"b\"])\n\
     ";
     check(&output.stderr, expected_stderr);
 }
@@ -67,13 +68,13 @@ fn three() {
     assert!(output.status.success());
     assert_eq!(output.stdout, b"");
     let expected_stderr = b"\
-        [2023-08-30T14:18:21Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:18:21Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:18:21Z INFO  three] None\n\
-        [2023-08-30T14:18:21Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:18:21Z DEBUG three] [\"a\", \"b\"]\n\
-        [2023-08-30T14:18:21Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:18:21Z INFO  three] Some([\"a\", \"b\"])\n\
+        [2023-10-12T16:30:04Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:30:04Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:30:04Z INFO  three] None\n\
+        [2023-10-12T16:30:04Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:30:04Z DEBUG three] [\"a\", \"b\"]\n\
+        [2023-10-12T16:30:04Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:30:04Z INFO  three] Some([\"a\", \"b\"])\n\
     ";
     check(&output.stderr, expected_stderr);
 }
@@ -84,13 +85,13 @@ fn four() {
     assert!(output.status.success());
     assert_eq!(output.stdout, b"");
     let expected_stderr = b"\
-        [2023-08-30T14:20:35Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:20:35Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:20:35Z INFO  four] None\n\
-        [2023-08-30T14:20:35Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:20:35Z DEBUG four] [\"a\", \"b\"]\n\
-        [2023-08-30T14:20:35Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:20:35Z INFO  four] Some([\"a\", \"b\"])\n\
+        [2023-10-12T16:30:37Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:30:37Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:30:37Z INFO  four] None\n\
+        [2023-10-12T16:30:37Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:30:37Z DEBUG four] [\"a\", \"b\"]\n\
+        [2023-10-12T16:30:37Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:30:37Z INFO  four] Some([\"a\", \"b\"])\n\
     ";
     check(&output.stderr, expected_stderr);
 }
@@ -102,14 +103,43 @@ fn five() {
     assert_eq!(output.stdout, b"");
     println!("{:?}", std::str::from_utf8(&output.stderr).unwrap());
     let expected_stderr = b"\
-        [2023-08-30T14:21:23Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:21:23Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:21:23Z INFO  five] None\n\
-        [2023-08-30T14:21:23Z TRACE log_instrument] one enter\n\
-        [2023-08-30T14:21:23Z DEBUG five] [\"a\", \"b\"]\n\
-        [2023-08-30T14:21:23Z DEBUG five] 23\n\
-        [2023-08-30T14:21:23Z TRACE log_instrument] one exit\n\
-        [2023-08-30T14:21:23Z INFO  five] Some([\"a\", \"b\"])\n\
+        [2023-10-12T16:31:12Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:31:12Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:31:12Z INFO  five] None\n\
+        [2023-10-12T16:31:12Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:31:12Z DEBUG five] [\"a\", \"b\"]\n\
+        [2023-10-12T16:31:12Z DEBUG five] 23\n\
+        [2023-10-12T16:31:12Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:31:12Z INFO  five] Some([\"a\", \"b\"])\n\
+    ";
+    check(&output.stderr, expected_stderr);
+}
+
+#[test]
+fn six() {
+    let output = std::process::Command::new(SIX).output().unwrap();
+    assert!(output.status.success());
+    assert_eq!(output.stdout, b"");
+    println!("{:?}", std::str::from_utf8(&output.stderr).unwrap());
+    let expected_stderr = b"\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:31:54Z DEBUG six] cmp: true\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:31:54Z INFO  six] 4\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:31:54Z DEBUG six] cmp: false\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)::one>>two\n\
+        [2023-10-12T16:31:54Z DEBUG six] res: 0\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)::one<<two\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:31:54Z INFO  six] 0\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)>>one\n\
+        [2023-10-12T16:31:54Z DEBUG six] cmp: false\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)::one>>two\n\
+        [2023-10-12T16:31:54Z DEBUG six] res: 1\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)::one<<two\n\
+        [2023-10-12T16:31:54Z TRACE log_instrument] ThreadId(1)<<one\n\
+        [2023-10-12T16:31:54Z INFO  six] 1\n\
     ";
     check(&output.stderr, expected_stderr);
 }
