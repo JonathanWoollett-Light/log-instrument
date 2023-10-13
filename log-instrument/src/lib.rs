@@ -6,8 +6,9 @@ use std::sync::OnceLock;
 
 type InnerPath = Mutex<HashMap<std::thread::ThreadId, Vec<&'static str>>>;
 static PATH: OnceLock<InnerPath> = OnceLock::new();
-fn init_path() -> InnerPath {
-    Mutex::new(HashMap::new())
+fn path() -> &'static InnerPath {
+    PATH.get_or_init(InnerPath::default)
+    
 }
 
 pub struct __Instrument;
@@ -15,7 +16,7 @@ pub struct __Instrument;
 impl __Instrument {
     pub fn new(s: &'static str) -> __Instrument {
         // Get log
-        let mut guard = PATH.get_or_init(init_path).lock().unwrap();
+        let mut guard = path().lock().unwrap();
         let id = std::thread::current().id();
         let prefix = if let Some(spans) = guard.get_mut(&id) {
             let out = spans.iter().fold(String::new(), |mut s, x| {
@@ -39,7 +40,7 @@ impl __Instrument {
 impl std::ops::Drop for __Instrument {
     fn drop(&mut self) {
         // Get log
-        let mut guard = PATH.get_or_init(init_path).lock().unwrap();
+        let mut guard = path().lock().unwrap();
         let id = std::thread::current().id();
         let spans = guard.get_mut(&id).unwrap();
         let s = spans.pop().unwrap();
