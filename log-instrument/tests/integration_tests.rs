@@ -3,8 +3,9 @@ const TWO: &str = "../target/debug/examples/two";
 const THREE: &str = "../target/debug/examples/three";
 const FOUR: &str = "../target/debug/examples/four";
 const FIVE: &str = "../target/debug/examples/five";
-const SIX: &str = "../target/debug/examples/six";
+// const SIX: &str = "../target/debug/examples/six";
 
+const SIX: &str = env!("CARGO_BIN_EXE_six");
 const TIMESTAMP_RANGE: std::ops::Range<usize> = 1..20;
 
 /// Match stderr to expected skipping bytes containing the timestamp.

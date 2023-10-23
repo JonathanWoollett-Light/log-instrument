@@ -8,7 +8,6 @@ type InnerPath = Mutex<HashMap<std::thread::ThreadId, Vec<&'static str>>>;
 static PATH: OnceLock<InnerPath> = OnceLock::new();
 fn path() -> &'static InnerPath {
     PATH.get_or_init(InnerPath::default)
-    
 }
 
 pub struct __Instrument;
