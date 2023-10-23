@@ -1,9 +1,9 @@
-const ONE: &str = "../target/debug/examples/one";
-const TWO: &str = "../target/debug/examples/two";
-const THREE: &str = "../target/debug/examples/three";
-const FOUR: &str = "../target/debug/examples/four";
-const FIVE: &str = "../target/debug/examples/five";
-const SIX: &str = "../target/debug/examples/six";
+const ONE: &str = env!("CARGO_BIN_EXE_one");
+const TWO: &str = env!("CARGO_BIN_EXE_two");
+const THREE: &str = env!("CARGO_BIN_EXE_three");
+const FOUR: &str = env!("CARGO_BIN_EXE_four");
+const FIVE: &str = env!("CARGO_BIN_EXE_five");
+const SIX: &str = env!("CARGO_BIN_EXE_six");
 
 const TIMESTAMP_RANGE: std::ops::Range<usize> = 1..20;
 
