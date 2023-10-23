@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-v0.3.0...log-instrument-v0.4.0) (2023-10-23)
+
+
+### Features
+
+* Remove `on` feature ([e29209c](https://github.com/JonathanWoollett-Light/log-instrument/commit/e29209c8ab45cd8449326a3775935a4e317c8f6c))
+
+
+### Bug Fixes
+
+* Test refactor ([a853749](https://github.com/JonathanWoollett-Light/log-instrument/commit/a853749ed1f745ce331cb277005d39e5ebcc2fc5))
+
 ## [0.3.0](https://github.com/JonathanWoollett-Light/log-instrument/compare/log-instrument-v0.2.0...log-instrument-v0.3.0) (2023-10-12)
 
 
